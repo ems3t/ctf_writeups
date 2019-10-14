@@ -1,0 +1,39 @@
+# asm3 (RE)
+
+![title](images/title.png)
+
+Just commented through the .S file and printed the flag
+
+```python
+#!/usr/bin/env python
+#0xd46c9935,0xdfe28722,0xb335450f
+# asm3:
+# 	<+0>:	push   ebp
+# 	<+1>:	mov    ebp,esp
+# 	<+3>:	xor    eax,eax					eax = 0
+# 	<+5>:	mov    ah,BYTE PTR [ebp+0xa]	ah = 6c ; ax = 6c00
+# 	<+8>:	shl    ax,0x10					ax = 6c000000; ah = 6c00; al = 0
+# 	<+12>:	sub    al,BYTE PTR [ebp+0xf]	al 0x100-0xdf = 0x21
+# 	<+15>:	add    ah,BYTE PTR [ebp+0xe]	ah 0x0+0xe2 = 0xe2 ; ax = 0xe221
+# 	<+18>:	xor    ax,WORD PTR [ebp+0x10]	0xe221^0x450f
+# 	<+22>:	nop
+# 	<+23>:	pop    ebp
+# 	<+24>:	ret    
+
+#0x8 = 0xd46c9935
+
+#0xc = 0xdfe28722
+
+#0x12 = 0xb335450f
+
+# 0x8 	0x9 	0xa 	0xb 	0xc 	0xd 	0xe 	0xf 	0x10 	0x11 	0x12	0x13
+#	35	99		6c		d4		22		87		e2		df		0x0f 	45 		35 		b3
+
+print hex(0xe221^0x450f)
+```
+
+<details>
+	<summary>Flag</summary>
+
+0xa72e
+</details>
