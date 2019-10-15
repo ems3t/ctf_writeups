@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
-f = open('./whitepages.txt', "rb")
-s = f.read()
-f.close()
-f = open('ItsReversed', "wb")
-f.write(s[::-1])
-f.close()
+from pwn import *
+
+with open('./whitepages.txt', 'r') as f:
+	file = f.read()
+
+file = file.replace('\xe2\x80\x83', '0')
+file = file.replace('\x20', '1')
+
+print unbits(file)
