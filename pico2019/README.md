@@ -20,6 +20,7 @@
 |[overflow_1](./binary/overflow_1/README.md)|
 |[stringzz](./binary/stringzz/README.md)|
 |[overflow_2](./binary/overflow_2/README.md)|
+|[newoverflow_2](./binary/newoverflow_2/README.md)|
 
 |Web|
 |:--------|
@@ -56,6 +57,7 @@
 |[vault_door_5](./re/vault_door_5/README.md)|
 |[vault_door_4](./re/vault_door_4/README.md)|
 |[asm3](./re/asm3/README.md)|
+|[droids0](./re/droids0/README.md)|
 
 |Forensics|
 |:--------|
@@ -70,3 +72,4 @@
 |[so_meta](./forensics/so_meta/README.md)|
 |[m00nwalk](./forensics/m00nwalk/README.md)|
 |[extensions](./forensics/extensions/README.md)|
+|[corrupt](./forensics/c0rrupt/README.md)-wip|

