@@ -1,3 +1,5 @@
+![title](title.png)
+
 # picoCTF 2019
 
 ## Score: 11550
@@ -20,11 +22,8 @@
 |[overflow_1](./binary/overflow_1/README.md)|
 |[stringzz](./binary/stringzz/README.md)|
 |[overflow_2](./binary/overflow_2/README.md)|
-<<<<<<< HEAD
 |[newoverflow_2](./binary/newoverflow_2/README.md)|
-=======
 |[messy-malloc](./binary/messy-malloc/README.md)|
->>>>>>> 9d565820eb3ba02aa5e2368fa27067caac5f7e60
 
 |Web|
 |:--------|
@@ -77,3 +76,4 @@
 |[m00nwalk](./forensics/m00nwalk/README.md)|
 |[extensions](./forensics/extensions/README.md)|
 |[corrupt](./forensics/c0rrupt/README.md)-wip|
+|[shark_on_wire_2](./forensics/shark_on_wire_2/README.md)|

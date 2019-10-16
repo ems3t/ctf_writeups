@@ -36,7 +36,7 @@ void print_flag() {
     for (int i = 0; i < ACCESS_CODE_LEN; i++) {
       putchar(u->access_code[i]);
     }
-    fprintf(stdout, "\"\n");
+    fprintlf(stdout, "\"\n");
     return;
   }
   
