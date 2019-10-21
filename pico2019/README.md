@@ -24,6 +24,7 @@
 |[overflow_2](./binary/overflow_2/README.md)|
 |[newoverflow_2](./binary/newoverflow_2/README.md)|
 |[messy-malloc](./binary/messy-malloc/README.md)|
+|[seed_spring](./binary/seed_spring/READE.md)|
 
 |Web|
 |:--------|
@@ -33,6 +34,8 @@
 |[picobrowser](./web/picobrowser/README.md)|
 |[irish_name_repo_2](./web/irish_name_repo_2/README.md)|
 |[webnet0](./web/webnet0/README.md)|
+|[irish-name-repo_3](./web/irish-name-repo_3/README.md)|
+|[JaWT_scratchpad](./web/JaWT_scratchpad/README.md)|
 
 |General|
 |:--------|
@@ -64,6 +67,7 @@
 |[asm3](./re/asm3/README.md)|
 |[droids0](./re/droids0/README.md)|
 |[droids1](./re/droids1/README.md)|
+|[vault-door-6](./re/vault-door-6/README.md)|
 
 |Forensics|
 |:--------|
@@ -81,3 +85,5 @@
 |[corrupt](./forensics/c0rrupt/README.md)-wip|
 |[shark_on_wire_2](./forensics/shark_on_wire_2/README.md)|
 |[pastAAA](./forensics/pastAAA/README.md)|
+|[investigative_reversing_3](./forensics/investigative_reversing_3/README.md)|
+|[investigative_reversing_4](./forensics/investigative_reversing_4/README.md)|
