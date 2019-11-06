@@ -17,4 +17,7 @@
 |[authenticate](./binary/authenticate/README.md)|Complete|Format String|
 |[got-shell?](./binary/got-shell/README.md)|Complete|
 |[rop chain](./binary/rop_chain/README.md)|Complete|32bit return oriented programming|
-|[buffer overflow 3](./binary/buffer_overflow_3)|Complete|32bit stack canary|
+|[buffer overflow 3](./binary/buffer_overflow_3/README.md)|Complete|32bit stack canary|
+|[are you root?](./binary/are_you_root/README.md)|Complete|Heap|
+|[gps](./binary/gps/README.md)|Complete|64bit Random Address|
+|[can-you-gets-me](./binary/can-you-gets-me/README.md)|Complete|32bit ROP|
